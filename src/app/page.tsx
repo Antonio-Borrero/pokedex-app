@@ -1,64 +1,48 @@
 "use client"
 
 import {fetchPokemonByIdOrName, fetchPokemonList, fetchPokemonSpeciesCount} from "@/api/pokemon";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {PokemonCard} from "@/components/PokemonCard";
 import {getPokemonIdFromUrl} from "@/utils/getPokemonIdFromUrl";
+import {usePokemonStore} from "@/store/pokemonStore";
+import {PokemonList} from "@/types/pokemon";
 
 export default function Home() {
 
-    const [count, setCount] = useState(0);
-    const [pokemonList, setPokemonList] = useState<PokemonListResult[]>([]);
-    const [pokemon, setPokemon] = useState<Pokemon[]>([]);
+    const {pokemons, setPokemons} = usePokemonStore();
 
     useEffect(() => {
-        const loadCount = async ()=> {
+        const loadData = async ()=> {
+
+            if (pokemons.length > 0) return;
+
             try {
-                const total = await fetchPokemonSpeciesCount();
-                setCount(total);
-            } catch (error) {
-                console.error("Error loading total count of pokemon", error);
-            }
-        };
-        loadCount();
-    }, []);
+                const count = await fetchPokemonSpeciesCount();
 
-    useEffect(() => {
-        if (count === 0) return;
+                const pokemonList: PokemonList[] = await fetchPokemonList(count);
 
-        const loadPokemonList = async () => {
-            try {
-                const response = await fetchPokemonList(count)
-                setPokemonList(response.results)
-            } catch (error) {
-                console.log("Error loading pokemon list", error)
-            }
-        };
-        loadPokemonList();
-    }, [count])
-
-    useEffect(() => {
-        if (pokemonList.length === 0) return;
-
-        const loadSinglePokemon = async (list: PokemonListResult[]) => {
-            try {
-                const response = await Promise.all(
-                    list.map((pokemon)=> {
-                        const id = getPokemonIdFromUrl(pokemon.url);
-                        return fetchPokemonByIdOrName(id)
+                const fullData = await Promise.all(
+                    pokemonList.map(async (p: PokemonList) => {
+                        const id = getPokemonIdFromUrl(p.url);
+                        const data = await fetchPokemonByIdOrName(id);
+                        return {
+                            id: data.id,
+                            name: data.name,
+                            sprites: data.sprites,
+                        };
                     })
                 );
-                setPokemon((prev) => [...prev, ...response]);
+                setPokemons(fullData);
             } catch (error) {
-                console.log("Error loading pokemon", error)
+                console.error("Error loading pokemons", error);
             }
         };
-        loadSinglePokemon(pokemonList);
-    }, [pokemonList]);
+        loadData();
+    }, [pokemons, setPokemons]);
 
   return (
       <div className={"m-2 grid grid-cols-6 gap-2"}>
-          {pokemon?.map((pokemon) => (
+          {pokemons?.map((pokemon) => (
               <PokemonCard key={pokemon.id} pokemon={pokemon} />
           ))}
       </div>

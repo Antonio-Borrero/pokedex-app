@@ -1,27 +1,19 @@
 export type PokemonList = {
-    next: string;
-    results: PokemonListResult[]
-}
-
-export type PokemonListResult = {
     name: string;
     url: string
 }
+
+export type PokemonPreview = {
+    id: number;
+    name: string;
+    sprites: string;
+};
 
 export type Pokemon = {
     id: number;
     name: string;
     height: number;
     weight: number;
-    sprites: {
-        other: {
-            "official-artwork": {
-                front_default: string
-            }
-        }
-    };
-    stats: {
-        base_stat: number;
-        stat: {name: string}
-    }[];
+    sprites: string;
+    stats: {name: string, base_stat: number}[];
 }
