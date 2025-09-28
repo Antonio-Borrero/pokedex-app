@@ -19,7 +19,7 @@ export const fetchPokemonByIdOrName = async (idOrName: string | number) => {
         id: data.id,
         name: data.name,
         height: data.height,
-        weigth: data.weigth,
+        weight: data.weight,
         sprites: data.sprites.other["official-artwork"].front_default,
         stats: data.stats.map((s: any) => ({
             name: s.stat.name,
