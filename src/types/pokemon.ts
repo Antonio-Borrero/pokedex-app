@@ -12,8 +12,9 @@ export type PokemonPreview = {
 export type Pokemon = {
     id: number;
     name: string;
+    types: {type: {name: string}}[],
     height: number;
     weight: number;
     sprites: string;
-    stats: {name: string, base_stat: number}[];
+    stats: {base_stat: number, stat: {name: string}}[];
 }
