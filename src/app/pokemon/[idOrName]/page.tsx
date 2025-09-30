@@ -1,7 +1,7 @@
 import {fetchPokemonByIdOrName} from "@/api/fetchPokeAPI";
 import {Pokemon} from "@/types/pokemon";
 import Image from "next/image"
-import {pokemonTypeColors} from "@/constants/pokemonTypeColors"
+import {backgroundPokemonTypeColors} from "@/constants/backgroundPokemonTypeColors"
 
 type Props = {
     params: {idOrName: string | number};
@@ -11,7 +11,7 @@ export default async function SinglePokemon ({params}: Props) {
 
     const pokemon: Pokemon = await fetchPokemonByIdOrName(params.idOrName);
     const mainType = pokemon.types[0].type.name;
-    const typeColor = pokemonTypeColors[mainType]
+    const typeColor = backgroundPokemonTypeColors[mainType]
 
     return (
         <div className={"h-screen flex items-center justify-center"}>
@@ -30,7 +30,7 @@ export default async function SinglePokemon ({params}: Props) {
                     <div className="flex items-center gap-3 text-3xl">
                         <h2 className="font-bold">Type:</h2>
                         {pokemon.types.map((type, index) => (
-                            <span key={index} className={`${pokemonTypeColors[type.type.name]} border p-1 rounded-lg text-2lg`}>
+                            <span key={index} className={`${backgroundPokemonTypeColors[type.type.name]} border p-1 rounded-lg text-2lg`}>
                                 {type.type.name}
                             </span>
                         ))}

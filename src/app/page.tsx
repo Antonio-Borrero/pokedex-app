@@ -39,6 +39,7 @@ export default function Home() {
                             id: data.id,
                             name: data.name,
                             sprites: data.sprites,
+                            types: data.types,
                         };
                     })
                 );

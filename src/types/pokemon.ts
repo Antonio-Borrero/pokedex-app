@@ -7,6 +7,7 @@ export type PokemonPreview = {
     id: number;
     name: string;
     sprites: string;
+    types: {type: {name: string}}[],
 };
 
 export type Pokemon = {
