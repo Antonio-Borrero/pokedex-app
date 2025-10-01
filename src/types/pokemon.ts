@@ -18,4 +18,14 @@ export type Pokemon = {
     weight: number;
     sprites: string;
     stats: {base_stat: number, stat: {name: string}}[];
+    species: string,
+}
+
+export type PokemonSpecies = {
+    evolution_chain: string,
+}
+
+export type PokemonEvolutionChain = {
+    species: { url: string },
+    evolves_to: PokemonEvolutionChain[],
 }
