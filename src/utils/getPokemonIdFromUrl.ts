@@ -1,4 +1,4 @@
 export const getPokemonIdFromUrl = (url: string) => {
     const parts = url.split('/').filter(Boolean);
-    return parts[parts.length - 1];
+    return Number(parts[parts.length - 1]);
 }
