@@ -2,7 +2,6 @@ import {PokemonPreview} from "@/types/pokemon"
 import Link from "next/link"
 import Image from "next/image"
 import {backgroundPokemonTypeColors} from "@/constants/backgroundPokemonTypeColors";
-import {borderPokemonTypeColors} from "@/constants/borderPokemonTypeColors";
 
 type props = {
     pokemon: PokemonPreview
@@ -12,10 +11,9 @@ export const PokemonCard = ({pokemon}: props) => {
 
     const mainType = pokemon.types[0].type.name;
     const backgroundColors = backgroundPokemonTypeColors[mainType];
-    const borderColors = borderPokemonTypeColors[mainType];
 
     return (
-        <div className={`border-4 border-blue-800 rounded-2xl ${backgroundColors} ${borderColors}`}>
+        <div className={`border-3 border-black rounded-2xl ${backgroundColors} `}>
             <Link href={`/pokemon/${pokemon.name}`}>
                 <Image
                     src={pokemon.sprites}
