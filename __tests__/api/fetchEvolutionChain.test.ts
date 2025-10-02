@@ -55,7 +55,7 @@ describe("fetchEvolutionChain", () => {
     })
 
     it("should handle fetch errors", async () => {
-        (global.fetch as jest.Mock) => jest.fn(() => Promise.reject(new Error("API error"))) as jest.Mock
+        (global.fetch as jest.Mock) = jest.fn(() => Promise.reject(new Error("API error"))) as jest.Mock
         await expect(fetchEvolutionChain("missing")).rejects.toThrow("API error")
     })
 })

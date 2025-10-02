@@ -1,6 +1,6 @@
 import {fetchPokemonByIdOrName} from "@/api/fetchPokeAPI"
 
-function mockPokemonResponse(id: number, name: string, height: number, weight: number, sprite: string, statName: string, statValue: number) {
+function mockPokemonResponse(id: number, name: string, height: number, weight: number, sprite: string, statName: string, statValue: number, species: string) {
     return {
         json: async () => ({
             id,
@@ -16,6 +16,7 @@ function mockPokemonResponse(id: number, name: string, height: number, weight: n
             },
             stats: [
                 {stat: {name: statName}, base_stat: statValue}],
+            species: {url: species}
         }),
     } as Response
 }
@@ -24,11 +25,11 @@ describe ("fetchPokemonByIdOrName", () => {
     beforeEach(() => {
         (global.fetch as jest.Mock) = jest.fn((url: string) => {
             if (url.endsWith("bulbasaur")) {
-                return Promise.resolve(mockPokemonResponse(1, "bulbasaur", 7, 69, "bulbasaur.png", "hp", 45))
+                return Promise.resolve(mockPokemonResponse(1, "bulbasaur", 7, 69, "bulbasaur.png", "hp", 45, "speciesUrl"))
             }
 
             if (url.endsWith("/1")) {
-                return Promise.resolve(mockPokemonResponse(1, "bulbasaur", 7, 69, "bulbasaur.png", "hp", 45))
+                return Promise.resolve(mockPokemonResponse(1, "bulbasaur", 7, 69, "bulbasaur.png", "hp", 45, "speciesUrl"))
             }
 
             return Promise.reject("Unexpected url " + url)
@@ -43,7 +44,8 @@ describe ("fetchPokemonByIdOrName", () => {
             height: 7,
             weight: 69,
             sprites: "bulbasaur.png",
-            stats: [{base_stat: 45, name: "hp"}],
+            stats: [{base_stat: 45, stat: {name: "hp"}}],
+            species: "speciesUrl"
         })
         expect(global.fetch).toHaveBeenCalledWith("https://pokeapi.co/api/v2/pokemon/bulbasaur")
     })
@@ -56,7 +58,8 @@ describe ("fetchPokemonByIdOrName", () => {
             height: 7,
             weight: 69,
             sprites: "bulbasaur.png",
-            stats: [{base_stat: 45, name: "hp"}],
+            stats: [{base_stat: 45, stat: {name: "hp"}}],
+            species: "speciesUrl"
         })
         expect(global.fetch).toHaveBeenCalledWith("https://pokeapi.co/api/v2/pokemon/1")
     })
