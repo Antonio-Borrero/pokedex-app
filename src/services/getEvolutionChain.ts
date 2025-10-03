@@ -2,7 +2,7 @@ import {fetchEvolutionChain, fetchPokemonSpecies} from "@/api/fetchPokeAPI";
 import {PokemonEvolutionChain} from "@/types/pokemon";
 import {getPokemonIdFromUrl} from "@/utils/getPokemonIdFromUrl";
 
-const extractIdsFromChain = (chain: PokemonEvolutionChain): number[] => {
+export const extractIdsFromChain = (chain: PokemonEvolutionChain): number[] => {
     const currentPokemonId = getPokemonIdFromUrl(chain.species.url);
     const evolutionsId = chain.evolves_to.flatMap(Evolution => extractIdsFromChain(Evolution));
     return [currentPokemonId, ...evolutionsId]

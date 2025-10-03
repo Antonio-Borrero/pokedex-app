@@ -19,7 +19,7 @@ describe("fetchEvolutionChain", () => {
         }))
     })
 
-    it("should return the url of the exolution species", async () => {
+    it("should return the url of the evolution species", async () => {
         const resp = await fetchEvolutionChain("https://pokeapi.co/api/v2/evolution-chain/1/");
         expect(resp).toEqual({
             species: { url: "https://pokeapi.co/api/v2/pokemon-species/2/"},
