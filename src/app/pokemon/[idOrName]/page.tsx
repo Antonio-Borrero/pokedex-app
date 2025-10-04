@@ -1,9 +1,10 @@
-import {fetchPokemonByIdOrName} from "@/api/fetchPokeAPI";
+import {fetchPokemonByIdOrName, fetchPokemonSpeciesCount} from "@/api/fetchPokeAPI";
 import {Pokemon} from "@/types/pokemon";
 import Image from "next/image"
 import {backgroundPokemonTypeColors} from "@/constants/backgroundPokemonTypeColors"
 import {getEvolutionChain} from "@/services/getEvolutionChain";
 import Link from "next/link";
+import {ChevronLeft, ChevronRight} from "lucide-react";
 
 type Props = {
     params: {idOrName: string | number};
@@ -20,8 +21,17 @@ export default async function SinglePokemon ({params}: Props) {
         evolutionIds.map(id => fetchPokemonByIdOrName(id))
     )
 
+    const lastPokemon = await fetchPokemonSpeciesCount()
+
     return (
         <div className={"h-screen flex items-center justify-center"}>
+
+            {/* left arrow */}
+
+            <Link href={pokemon.id > 1 ? `/pokemon/${pokemon.id - 1}` : "#"} className={pokemon.id === 1 ? "invisible" : ""}>
+                <ChevronLeft />
+            </Link>
+
 
             {/* Card */}
 
@@ -71,6 +81,12 @@ export default async function SinglePokemon ({params}: Props) {
                     </ul>
                 </div>
             </div>
+
+            {/* right arrow */}
+
+            <Link href={pokemon.id < lastPokemon ? `/pokemon/${pokemon.id + 1}` : "#"} className={pokemon.id === lastPokemon ? "invisible" : ""}>
+                <ChevronRight/>
+            </Link>
         </div>
     )
 }
