@@ -1,4 +1,6 @@
-export const getPokemonIdFromUrl = (url: string) => {
+export const getPokemonIdFromUrl = (url: string): number | undefined => {
     const parts = url.split('/').filter(Boolean);
-    return Number(parts[parts.length - 1]);
+    const last = parts[parts.length - 1];
+    const id = Number(last)
+    return isNaN(id) ? undefined : id
 }
