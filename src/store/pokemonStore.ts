@@ -5,12 +5,20 @@ import {PokemonPreview} from "@/types/pokemon";
 type PokemonStore = {
     pokemons: PokemonPreview[],
     setPokemons: (pokemon: PokemonPreview[]) => void,
+    visibleCount: number,
+    setVisibleCount: (count: number) => void,
+    scrollY: number,
+    setScrollY: (y: number) => void,
 }
 
 export const usePokemonStore = create<PokemonStore>()(
     persist<PokemonStore>((set) => ({
             pokemons: [],
             setPokemons: (pokemons: PokemonPreview[]) => set({pokemons}),
+            visibleCount: 18,
+            setVisibleCount: (count) => set({visibleCount: count}),
+            scrollY: 0,
+            setScrollY: (y) => set({scrollY: y}),
         }),
         {
             name: "pokemon-storage",
