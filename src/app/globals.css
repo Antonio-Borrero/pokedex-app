@@ -15,3 +15,18 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.dropdown::-webkit-scrollbar {
+    width: 12px;
+}
+
+.dropdown::-webkit-scrollbar-track {
+    margin: 4px;
+    border-radius: 10px;
+}
+
+.dropdown::-webkit-scrollbar-thumb {
+    background-color: #1e3a8a;
+    border-radius: 50px;
+    border: 2px solid #e7e5e4;
+}
+

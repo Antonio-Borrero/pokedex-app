@@ -44,14 +44,16 @@ export default function Navbar() {
                         className={"bg-white rounded-2xl w-[25vw] h-[3.8vh] border-blue-800 border-4 focus:outline-0 p-3 text-2xl capitalize font-normal "}
                     />
                     {dropDown && filteredPokemon.length > 0 && (
-                        <ul className={"absolute z-10 bg-stone-200 p-1 rounded-2xl mt-2 border-4 border-blue-800 w-[15vw]"}>
-                            {filteredPokemon.map((pokemon, i) => (
-                                <li key={i} className={`flex items-center ${backgroundPokemonTypeColors[pokemon.types[0].type.name]} rounded-2xl p-1 border-3 border-black`}>
-                                    <Image src={pokemon.sprites} alt={"Pokemon"} width={100} height={100} />
-                                    <span>{pokemon.id}. {pokemon.name}</span>
-                                </li>
-                            ))}
-                        </ul>
+                        <div className={""}>
+                            <ul className={"absolute z-10 bg-stone-200 p-1 rounded-2xl mt-2 border-4 border-blue-800 w-[15vw] flex flex-col gap-1 overflow-y-auto max-h-[40vh] dropdown"}>
+                                {filteredPokemon.map((pokemon, i) => (
+                                    <li key={i} className={`flex items-center ${backgroundPokemonTypeColors[pokemon.types[0].type.name]} rounded-2xl p-1 border-3 border-black`}>
+                                        <Image src={pokemon.sprites} alt={"Pokemon"} width={100} height={100} />
+                                        <span>{pokemon.id}. {pokemon.name}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     )}
                 </div>
             </form>
