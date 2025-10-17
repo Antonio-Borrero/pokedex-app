@@ -9,6 +9,8 @@ type PokemonStore = {
     setVisibleCount: (count: number) => void,
     scrollY: number,
     setScrollY: (y: number) => void,
+    selectedType: string | null,
+    setSelectedType: (type: string) => void,
 }
 
 export const usePokemonStore = create<PokemonStore>()(
@@ -19,6 +21,8 @@ export const usePokemonStore = create<PokemonStore>()(
             setVisibleCount: (count) => set({visibleCount: count}),
             scrollY: 0,
             setScrollY: (y) => set({scrollY: y}),
+            selectedType: null,
+            setSelectedType: (type) => set({selectedType: type})
         }),
         {
             name: "pokemon-storage",
