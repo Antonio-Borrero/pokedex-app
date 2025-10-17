@@ -96,7 +96,14 @@ export default function Navbar() {
                     )}
                 </div>
             </form>
-            <button>Types</button>
+            <button className={"relative border-4 border-blue-800 rounded-2xl text-2xl font-semibold p-2 w-[15vh]"} onClick={() => setTypesDropDown(true)}>Types</button>
+            {typesDropDown && (
+                <div>
+                    <ul>
+                        {}
+                    </ul>
+                </div>
+            )}
             <button>Generation</button>
             <button>Login</button>
         </div>
