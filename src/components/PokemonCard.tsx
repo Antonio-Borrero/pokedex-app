@@ -21,7 +21,7 @@ export const PokemonCard = ({pokemon}: props) => {
                     className={"m-auto"}
                     width={300} height={300}
                     priority={false} />
-                <div className={"flex gap-2 justify-center text-3xl text-white drop-shadow-[2px_2px_2px_black] capitalize pb-2"}>
+                <div className={"flex gap-2 justify-center text-3xl text-white text-shadow-[2px_2px_2px_black] capitalize pb-2"}>
                     <h2 className={""}>{pokemon.id}.</h2>
                     <h2>{pokemon.name}</h2>
                 </div>

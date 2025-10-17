@@ -1,4 +1,4 @@
-import {PokemonList, Pokemon, PokemonSpecies, PokemonEvolutionChain} from "@/types/pokemon"
+import {PokemonList, Pokemon, PokemonSpecies, PokemonEvolutionChain, PokemonTypes} from "@/types/pokemon"
 
 export const fetchPokemonSpeciesCount = async (): Promise<number> => {
     const resp = await fetch("https://pokeapi.co/api/v2/pokemon-species");
@@ -37,4 +37,10 @@ export const fetchEvolutionChain = async (url: string): Promise<PokemonEvolution
     const resp = await fetch(url);
     const data = await resp.json();
     return data.chain
+}
+
+export const fetchPokemonTypes = async (): Promise<PokemonTypes[]> => {
+    const resp = await fetch("https://pokeapi.co/api/v2/type/")
+    const data = await resp.json();
+    return data.results;
 }

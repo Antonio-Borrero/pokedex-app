@@ -1,6 +1,6 @@
 "use client"
 
-import {useState, useRef, ChangeEvent, FormEvent} from "react";
+import {useState, useRef, ChangeEvent, FormEvent, useEffect} from "react";
 import Image from "next/image";
 import {Search} from "lucide-react"
 import {usePokemonStore} from "@/store/pokemonStore";
@@ -8,15 +8,18 @@ import {backgroundPokemonTypeColors} from "@/constants/backgroundPokemonTypeColo
 import Link from "next/link";
 import {useRouter} from "next/navigation";
 import useClickOutside from "@/hooks/useClickOutside";
+import {PokemonTypes} from "@/types/pokemon";
+import {fetchPokemonTypes} from "@/api/fetchPokeAPI";
 
 
 export default function Navbar() {
 
-    const {pokemons} = usePokemonStore();
+    const {pokemons, setSelectedType} = usePokemonStore();
     const router = useRouter();
 
     const [input, setInput] = useState("");
     const [inputdropDown, setInputDropDown] = useState(false);
+    const [types, setTypes] = useState<PokemonTypes[]>([]);
     const [typesDropDown, setTypesDropDown] = useState(false);
     const [generationDropDown, setGenerationDropDown] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -53,6 +56,18 @@ export default function Navbar() {
         setInput(value);
         setInputDropDown(value.length > 0);
     }
+
+    useEffect(() => {
+        const loadTypes = async () => {
+            try {
+                const types = await fetchPokemonTypes();
+                setTypes(types);
+            } catch (error) {
+                console.log("Error fetching pokemon types", error)
+            }
+        }
+        loadTypes();
+    }, []);
 
     return (
         <div className={"bg-amber-400 border-4 rounded-2xl m-[1vh] border-blue-800 h-[12vh] flex justify-evenly items-center"}>
@@ -96,14 +111,22 @@ export default function Navbar() {
                     )}
                 </div>
             </form>
-            <button className={"relative border-4 border-blue-800 rounded-2xl text-2xl font-semibold p-2 w-[15vh]"} onClick={() => setTypesDropDown(true)}>Types</button>
-            {typesDropDown && (
-                <div>
-                    <ul>
-                        {}
-                    </ul>
-                </div>
-            )}
+            <div className={"relative"} ref={typesRef}>
+                <button className={"border-4 border-blue-800 rounded-2xl text-2xl font-semibold p-1 w-[15vh]"} onClick={() => setTypesDropDown(prev => !prev)}>Types</button>
+                {typesDropDown && (
+                    <div>
+                        <ul className={"absolute z-10 bg-stone-200 p-1 rounded-2xl mt-2 border-4 border-blue-800 flex flex-col gap-1 overflow-y-auto max-h-[40vh] dropdown"}>
+                            {types.map((type, i) => (
+                                <li key={i}
+                                    className={`${backgroundPokemonTypeColors[type.name]} rounded-md text-2xl capitalize font-semibold p-2 text-white text-shadow-[2px_2px_2px_black] cursor-pointer`}
+                                    onClick={() => setSelectedType(type.name)}>
+                                    <p>{type.name}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+            </div>
             <button>Generation</button>
             <button>Login</button>
         </div>

@@ -29,3 +29,8 @@ export type PokemonEvolutionChain = {
     species: { url: string },
     evolves_to: PokemonEvolutionChain[],
 }
+
+export type PokemonTypes = {
+    name: string;
+    url: string;
+}
