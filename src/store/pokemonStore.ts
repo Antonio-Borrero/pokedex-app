@@ -10,7 +10,7 @@ type PokemonStore = {
     scrollY: number,
     setScrollY: (y: number) => void,
     selectedType: string | null,
-    setSelectedType: (type: string) => void,
+    setSelectedType: (type: string | null) => void,
 }
 
 export const usePokemonStore = create<PokemonStore>()(

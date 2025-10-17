@@ -71,7 +71,7 @@ export default function Navbar() {
 
     return (
         <div className={"bg-amber-400 border-4 rounded-2xl m-[1vh] border-blue-800 h-[12vh] flex justify-evenly items-center"}>
-            <Link href={"/"}>
+            <Link href={"/"} onClick={() => setSelectedType(null)}>
                 <p>Home</p>
                 <div className={"relative"}>
                     <Image
