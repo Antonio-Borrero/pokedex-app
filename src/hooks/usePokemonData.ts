@@ -1,6 +1,11 @@
 import {useEffect} from "react";
 import {usePokemonStore} from "@/store/pokemonStore";
-import {fetchPokemonSpeciesCount, fetchPokemonList, fetchPokemonByIdOrName} from "@/api/fetchPokeAPI";
+import {
+    fetchPokemonSpeciesCount,
+    fetchPokemonList,
+    fetchPokemonByIdOrName,
+    fetchPokemonSpecies,
+} from "@/api/fetchPokeAPI";
 import {getPokemonIdFromUrl} from "@/utils/getPokemonIdFromUrl";
 import {PokemonList} from "@/types/pokemon";
 
@@ -21,11 +26,13 @@ export const usePokemonData = () => {
                     pokemonList.map(async (p: PokemonList) => {
                         const id = getPokemonIdFromUrl(p.url);
                         const data = await fetchPokemonByIdOrName(id);
+                        const generation = await fetchPokemonSpecies(`https://pokeapi.co/api/v2/pokemon-species/${id}/`)
                         return {
                             id: data.id,
                             name: data.name,
                             sprites: data.sprites,
                             types: data.types,
+                            generation: generation.generation,
                         };
                     })
                 );

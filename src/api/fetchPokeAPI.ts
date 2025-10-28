@@ -1,4 +1,11 @@
-import {PokemonList, Pokemon, PokemonSpecies, PokemonEvolutionChain, PokemonTypes} from "@/types/pokemon"
+import {
+    PokemonList,
+    Pokemon,
+    PokemonSpecies,
+    PokemonEvolutionChain,
+    PokemonTypes,
+    PokemonGenerations
+} from "@/types/pokemon"
 
 export const fetchPokemonSpeciesCount = async (): Promise<number> => {
     const resp = await fetch("https://pokeapi.co/api/v2/pokemon-species");
@@ -30,7 +37,10 @@ export const fetchPokemonByIdOrName = async (idOrName: string | number): Promise
 export const fetchPokemonSpecies = async (url: string): Promise<PokemonSpecies> => {
     const resp = await fetch(url);
     const data = await resp.json();
-    return { evolution_chain: data.evolution_chain.url }
+    return {
+        evolution_chain: data.evolution_chain.url,
+        generation: data.generation.name,
+    }
 }
 
 export const fetchEvolutionChain = async (url: string): Promise<PokemonEvolutionChain> => {
@@ -41,6 +51,12 @@ export const fetchEvolutionChain = async (url: string): Promise<PokemonEvolution
 
 export const fetchPokemonTypes = async (): Promise<PokemonTypes[]> => {
     const resp = await fetch("https://pokeapi.co/api/v2/type/")
+    const data = await resp.json();
+    return data.results;
+}
+
+export const fetchPokemonGenerations = async (): Promise<PokemonGenerations[]> => {
+    const resp = await fetch("https://pokeapi.co/api/v2/generation/");
     const data = await resp.json();
     return data.results;
 }

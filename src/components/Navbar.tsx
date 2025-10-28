@@ -8,19 +8,20 @@ import {backgroundPokemonTypeColors} from "@/constants/backgroundPokemonTypeColo
 import Link from "next/link";
 import {useRouter} from "next/navigation";
 import useClickOutside from "@/hooks/useClickOutside";
-import {PokemonTypes} from "@/types/pokemon";
-import {fetchPokemonTypes} from "@/api/fetchPokeAPI";
+import {PokemonGenerations, PokemonTypes} from "@/types/pokemon";
+import {fetchPokemonGenerations, fetchPokemonTypes} from "@/api/fetchPokeAPI";
 
 
 export default function Navbar() {
 
-    const {pokemons, selectedType ,setSelectedType} = usePokemonStore();
+    const {pokemons, selectedType ,setSelectedType, selectedGeneration, setSelectedGeneration} = usePokemonStore();
     const router = useRouter();
 
     const [input, setInput] = useState("");
     const [inputdropDown, setInputDropDown] = useState(false);
     const [types, setTypes] = useState<PokemonTypes[]>([]);
     const [typesDropDown, setTypesDropDown] = useState(false);
+    const [generations, setGenerations] = useState<PokemonGenerations[]>([]);
     const [generationDropDown, setGenerationDropDown] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -68,6 +69,18 @@ export default function Navbar() {
         }
         loadTypes();
     }, []);
+
+    useEffect (() => {
+        const loadGenerations = async () => {
+            try {
+                const generations = await fetchPokemonGenerations();
+                setGenerations(generations);
+            } catch (error) {
+                console.log("Error fetching pokemon generations", error)
+            }
+        }
+        loadGenerations();
+    }, [])
 
     return (
         <div className={"bg-amber-400 border-4 rounded-2xl m-[1vh] border-blue-800 h-[12vh] flex justify-evenly items-center"}>
@@ -133,7 +146,28 @@ export default function Navbar() {
                     </div>
                 )}
             </div>
-            <button>Generation</button>
+            <div className={"relative"} ref={generationRef}>
+                <button className={"border-4 border-blue-800 rounded-2xl text-2xl font-semibold p-1 w-[15vh]"} onClick={() => setGenerationDropDown(prev => !prev)}>Generations</button>
+                {generationDropDown && (
+                    <div>
+                        <ul className={"absolute z-10 bg-stone-200 p-1 rounded-2xl mt-2 border-4 border-blue-800 flex flex-col gap-1 overflow-y-auto max-h-[40vh] dropdown"}>
+                            {generations.map((generation, i) => (
+                                <li key={i}
+                                    className={`rounded-md text-2xl capitalize font-semibold p-2 text-white text-shadow-[2px_2px_2px_black] cursor-pointer`}
+                                    onClick={() => {
+                                        if (generation.name === selectedGeneration) {
+                                            setSelectedGeneration(null);
+                                        } else {
+                                            setSelectedGeneration(generation.name);
+                                        }
+                                    }}>
+                                    <p>{generation.name}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+            </div>
             <button>Login</button>
         </div>
     )

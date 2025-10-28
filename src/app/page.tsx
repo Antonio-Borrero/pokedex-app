@@ -9,7 +9,7 @@ import {useInfiniteScroll} from "@/hooks/useInfiniteScroll";
 
 export default function Home() {
 
-    const {pokemons, visibleCount, setVisibleCount, selectedType} = usePokemonStore();
+    const {pokemons, visibleCount, setVisibleCount, selectedType, selectedGeneration} = usePokemonStore();
 
     usePokemonData();
     useScrollRestore()
@@ -20,8 +20,12 @@ export default function Home() {
 
     const sentinelRef = useInfiniteScroll(loadMore);
 
-    const filteredPokemons = pokemons.filter(pokemon =>
-        selectedType === null ? true : pokemon.types.some(type => type.type.name === selectedType))
+    const filteredPokemons = pokemons.filter(pokemon => {
+        const matchesType = !selectedType || pokemon.types.some(type => type.type.name === selectedType);
+        const matchesGeneration = !selectedGeneration || pokemon.generation === selectedGeneration;
+
+        return matchesType && matchesGeneration;
+    });
 
   return (
       <div className={"m-2 grid grid-cols-6 gap-2"}>

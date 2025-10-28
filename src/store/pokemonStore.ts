@@ -11,6 +11,8 @@ type PokemonStore = {
     setScrollY: (y: number) => void,
     selectedType: string | null,
     setSelectedType: (type: string | null) => void,
+    selectedGeneration: string | null,
+    setSelectedGeneration: (generation: string | null) => void,
 }
 
 export const usePokemonStore = create<PokemonStore>()(
@@ -22,7 +24,9 @@ export const usePokemonStore = create<PokemonStore>()(
             scrollY: 0,
             setScrollY: (y) => set({scrollY: y}),
             selectedType: null,
-            setSelectedType: (type) => set({selectedType: type})
+            setSelectedType: (type) => set({selectedType: type}),
+            selectedGeneration: null,
+            setSelectedGeneration: (generation) => set({selectedGeneration: generation}),
         }),
         {
             name: "pokemon-storage",
