@@ -24,7 +24,7 @@ export default async function SinglePokemon ({params}: Props) {
     const lastPokemon = await fetchPokemonSpeciesCount()
 
     return (
-        <div className={"h-screen flex items-center justify-center"}>
+        <div className={"mt-10 flex items-center justify-center"}>
 
             {/* left arrow */}
 
