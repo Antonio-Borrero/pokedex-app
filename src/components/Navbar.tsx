@@ -14,7 +14,7 @@ import {fetchPokemonTypes} from "@/api/fetchPokeAPI";
 
 export default function Navbar() {
 
-    const {pokemons, setSelectedType} = usePokemonStore();
+    const {pokemons, selectedType ,setSelectedType} = usePokemonStore();
     const router = useRouter();
 
     const [input, setInput] = useState("");
@@ -119,7 +119,13 @@ export default function Navbar() {
                             {types.map((type, i) => (
                                 <li key={i}
                                     className={`${backgroundPokemonTypeColors[type.name]} rounded-md text-2xl capitalize font-semibold p-2 text-white text-shadow-[2px_2px_2px_black] cursor-pointer`}
-                                    onClick={() => setSelectedType(type.name)}>
+                                    onClick={() => {
+                                        if (type.name === selectedType) {
+                                            setSelectedType(null);
+                                        } else {
+                                            setSelectedType(type.name);
+                                        }
+                                    }}>
                                     <p>{type.name}</p>
                                 </li>
                             ))}
