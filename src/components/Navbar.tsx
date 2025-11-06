@@ -128,6 +128,7 @@ export default function Navbar() {
                         value={input}
                         onChange={handleInputChange}
                         className={"bg-white rounded-2xl w-[25vw] h-[3.8vh] border-blue-800 border-4 focus:outline-0 p-3 text-2xl capitalize font-normal "}
+                        placeholder={"Search pokémon"}
                     />
                     {inputdropDown && filteredPokemon.length > 0 && (
                         <div className={""}>
@@ -200,10 +201,6 @@ export default function Navbar() {
                     </div>
                 )}
             </div>
-
-            {/* login */ }
-
-            <button>Login</button>
         </div>
     )
 }
