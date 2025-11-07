@@ -5,7 +5,6 @@ import {
     PokemonEvolutionChain,
     PokemonTypes,
     PokemonGenerations,
-    Region,
 } from "@/types/pokemon"
 
 export const fetchPokemonSpeciesCount = async (): Promise<number> => {
