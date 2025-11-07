@@ -30,3 +30,11 @@ body {
     border: 2px solid #e7e5e4;
 }
 
+.text-outline-blue {
+    text-shadow:
+            -2px -2px 0 #1e3a8a,
+            2px -2px 0 #1e3a8a,
+            -2px  2px 0 #1e3a8a,
+            2px  2px 0 #1e3a8a;
+}
+

@@ -4,7 +4,8 @@ import {
     PokemonSpecies,
     PokemonEvolutionChain,
     PokemonTypes,
-    PokemonGenerations
+    PokemonGenerations,
+    Region,
 } from "@/types/pokemon"
 
 export const fetchPokemonSpeciesCount = async (): Promise<number> => {
@@ -59,4 +60,10 @@ export const fetchPokemonGenerations = async (): Promise<PokemonGenerations[]> =
     const resp = await fetch("https://pokeapi.co/api/v2/generation/");
     const data = await resp.json();
     return data.results;
+}
+
+export const fetchGeneration = async (url: string): Promise<string> => {
+    const resp = await fetch(url);
+    const data = await resp.json();
+    return data.main_region.name;
 }

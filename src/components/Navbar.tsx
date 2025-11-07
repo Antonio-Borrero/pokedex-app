@@ -9,14 +9,14 @@ import Link from "next/link";
 import {useRouter} from "next/navigation";
 import useClickOutside from "@/hooks/useClickOutside";
 import {PokemonGenerations, PokemonTypes} from "@/types/pokemon";
-import {fetchPokemonGenerations, fetchPokemonTypes} from "@/api/fetchPokeAPI";
+import {fetchGeneration, fetchPokemonGenerations, fetchPokemonTypes} from "@/api/fetchPokeAPI";
 
 
 export default function Navbar() {
 
     {/* store */}
 
-    const {pokemons, selectedType ,setSelectedType, selectedGeneration, setSelectedGeneration} = usePokemonStore();
+    const {pokemons, selectedType ,setSelectedType, selectedGeneration, setSelectedGeneration, regions, setRegions} = usePokemonStore();
 
     {/* navigation */}
 
@@ -25,7 +25,7 @@ export default function Navbar() {
     {/* states */}
 
     const [input, setInput] = useState("");
-    const [inputdropDown, setInputDropDown] = useState(false);
+    const [inputDropDown, setInputDropDown] = useState(false);
     const [types, setTypes] = useState<PokemonTypes[]>([]);
     const [typesDropDown, setTypesDropDown] = useState(false);
     const [generations, setGenerations] = useState<PokemonGenerations[]>([]);
@@ -95,6 +95,13 @@ export default function Navbar() {
             try {
                 const generations = await fetchPokemonGenerations();
                 setGenerations(generations);
+
+                if(regions.length === 0) {
+                    const regions = await Promise.all(
+                        generations.map(async (generation) => await fetchGeneration(generation.url))
+                    );
+                    setRegions(regions);
+                }
             } catch (error) {
                 console.log("Error fetching pokemon generations", error)
             }
@@ -130,7 +137,7 @@ export default function Navbar() {
                         className={"bg-white rounded-2xl w-[25vw] h-[3.8vh] border-blue-800 border-4 focus:outline-0 p-3 text-2xl capitalize font-normal "}
                         placeholder={"Search pokémon"}
                     />
-                    {inputdropDown && filteredPokemon.length > 0 && (
+                    {inputDropDown && filteredPokemon.length > 0 && (
                         <div className={""}>
                             <ul className={"absolute z-10 bg-stone-200 p-1 rounded-2xl mt-2 border-4 border-blue-800 w-[15vw] flex flex-col gap-1 overflow-y-auto max-h-[40vh] dropdown"}>
                                 {filteredPokemon.map((pokemon, i) => (
@@ -186,7 +193,7 @@ export default function Navbar() {
                         <ul className={"absolute z-10 bg-stone-200 p-1 rounded-2xl mt-2 border-4 border-blue-800 flex flex-col gap-1 overflow-y-auto max-h-[40vh] dropdown divide-y divide-stone-400"}>
                             {generations.map((generation, i) => (
                                 <li key={i}
-                                    className={`text-2xl capitalize font-semibold p-2 text-white text-shadow-[2px_2px_2px_black] cursor-pointer`}
+                                    className={`text-2xl capitalize font-semibold p-2 text-amber-400 text-outline-blue cursor-pointer whitespace-nowrap`}
                                     onClick={() => {
                                         if (generation.name === selectedGeneration) {
                                             setSelectedGeneration(null);
@@ -194,7 +201,7 @@ export default function Navbar() {
                                             setSelectedGeneration(generation.name);
                                         }
                                     }}>
-                                    <p>{generation.name}</p>
+                                    <p>{i + 1} generation - {regions[i]}</p>
                                 </li>
                             ))}
                         </ul>

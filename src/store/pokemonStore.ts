@@ -13,6 +13,8 @@ type PokemonStore = {
     setSelectedType: (type: string | null) => void,
     selectedGeneration: string | null,
     setSelectedGeneration: (generation: string | null) => void,
+    regions: string[],
+    setRegions: (regions: string[]) => void,
 }
 
 export const usePokemonStore = create<PokemonStore>()(
@@ -27,6 +29,8 @@ export const usePokemonStore = create<PokemonStore>()(
             setSelectedType: (type) => set({selectedType: type}),
             selectedGeneration: null,
             setSelectedGeneration: (generation) => set({selectedGeneration: generation}),
+            regions: [],
+            setRegions: (regions: string[]) => set({regions})
         }),
         {
             name: "pokemon-storage",
