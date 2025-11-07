@@ -155,7 +155,7 @@ export default function Navbar() {
             {/* types button */ }
 
             <div className={"relative"} ref={typesRef}>
-                <button className={"border-4 border-blue-800 rounded-2xl text-2xl font-semibold p-1 px-8"} onClick={() => setTypesDropDown(prev => !prev)}>Types</button>
+                <button className={"border-4 border-blue-800 rounded-2xl text-2xl font-semibold p-1 px-8 text-white text-shadow-[2px_2px_2px_black]"} onClick={() => setTypesDropDown(prev => !prev)}>Types</button>
                 {typesDropDown && (
                     <div>
                         <ul className={"absolute z-10 bg-stone-200 p-1 rounded-2xl mt-2 border-4 border-blue-800 flex flex-col gap-1 overflow-y-auto max-h-[40vh] dropdown"}>
@@ -180,7 +180,7 @@ export default function Navbar() {
             {/* generations button */ }
 
             <div className={"relative"} ref={generationRef}>
-                <button className={"border-4 border-blue-800 rounded-2xl text-2xl font-semibold p-1 px-8"} onClick={() => setGenerationDropDown(prev => !prev)}>Generations</button>
+                <button className={"border-4 border-blue-800 rounded-2xl text-2xl font-semibold p-1 px-8 text-white text-shadow-[2px_2px_2px_black]"} onClick={() => setGenerationDropDown(prev => !prev)}>Generations</button>
                 {generationDropDown && (
                     <div>
                         <ul className={"absolute z-10 bg-stone-200 p-1 rounded-2xl mt-2 border-4 border-blue-800 flex flex-col gap-1 overflow-y-auto max-h-[40vh] dropdown divide-y divide-stone-400"}>
