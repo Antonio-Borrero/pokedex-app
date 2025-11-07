@@ -107,7 +107,7 @@ export default function Navbar() {
             }
         }
         loadGenerations();
-    }, [])
+    }, [regions.length, setRegions])
 
     return (
         <div className={"bg-amber-400 border-4 rounded-2xl m-[1vh] border-blue-800 h-[12vh] flex justify-evenly items-center"}>
@@ -115,13 +115,12 @@ export default function Navbar() {
             {/* logo */}
 
             <Link href={"/"} onClick={() => setSelectedType(null)}>
-                <p>Home</p>
                 <div className={"relative"}>
                     <Image
-                        src={""}
+                        src="/logo.png"
                         alt={"Logo"}
-                        fill
-                        objectFit={"contain"}
+                        width={200}
+                        height={100}
                     />
             </div>
             </Link>
@@ -134,7 +133,7 @@ export default function Navbar() {
                     <input
                         value={input}
                         onChange={handleInputChange}
-                        className={"bg-white rounded-2xl w-[25vw] h-[3.8vh] border-blue-800 border-4 focus:outline-0 p-3 text-2xl capitalize font-normal "}
+                        className={"bg-white rounded-2xl w-[25vw] h-[4.5vh] border-blue-800 border-4 focus:outline-0 p-3 text-2xl capitalize font-normal "}
                         placeholder={"Search pokémon"}
                     />
                     {inputDropDown && filteredPokemon.length > 0 && (
