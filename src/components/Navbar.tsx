@@ -14,15 +14,15 @@ import {fetchGeneration, fetchPokemonGenerations, fetchPokemonTypes} from "@/api
 
 export default function Navbar() {
 
-    {/* store */}
+    // store
 
-    const {pokemons, selectedType ,setSelectedType, selectedGeneration, setSelectedGeneration, regions, setRegions} = usePokemonStore();
+    const {pokemons, selectedType ,setSelectedType, selectedGeneration, setSelectedGeneration} = usePokemonStore();
 
-    {/* navigation */}
+    // navigation
 
     const router = useRouter();
 
-    {/* states */}
+    // states
 
     const [input, setInput] = useState("");
     const [inputDropDown, setInputDropDown] = useState(false);
@@ -30,25 +30,26 @@ export default function Navbar() {
     const [typesDropDown, setTypesDropDown] = useState(false);
     const [generations, setGenerations] = useState<PokemonGenerations[]>([]);
     const [generationDropDown, setGenerationDropDown] = useState(false);
+    const [regions, setRegions] = useState<string[]>([]);
     const [error, setError] = useState<string | null>(null);
 
-    {/* refs */}
+    // refs
 
     const searchRef = useRef<HTMLDivElement>(null);
     const typesRef = useRef<HTMLDivElement>(null);
     const generationRef = useRef<HTMLDivElement>(null);
 
-    {/* dropdowns */}
+    // dropdowns
 
     useClickOutside(searchRef, () => setInputDropDown(false));
     useClickOutside(typesRef, () => setTypesDropDown(false));
     useClickOutside(generationRef, () => setGenerationDropDown(false));
 
-    {/* filter */}
+    // filter
 
     const filteredPokemon = pokemons.filter((pokemon) => pokemon.name.toLowerCase().includes(input.toLowerCase()))
 
-    {/* form submit */}
+    // form submit
 
     const handleSubmit = (e : FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -66,7 +67,7 @@ export default function Navbar() {
         }
     }
 
-    {/* input value and dropdown */}
+    // input value and dropdown
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
@@ -74,7 +75,7 @@ export default function Navbar() {
         setInputDropDown(value.length > 0);
     }
 
-    {/* types button */}
+    // types button
 
     useEffect(() => {
         const loadTypes = async () => {
@@ -88,7 +89,7 @@ export default function Navbar() {
         loadTypes();
     }, []);
 
-    {/* generations button */}
+    // generations button
 
     useEffect (() => {
         const loadGenerations = async () => {
@@ -96,18 +97,17 @@ export default function Navbar() {
                 const generations = await fetchPokemonGenerations();
                 setGenerations(generations);
 
-                if(regions.length === 0) {
-                    const regions = await Promise.all(
-                        generations.map(async (generation) => await fetchGeneration(generation.url))
-                    );
-                    setRegions(regions);
-                }
+                const regions = await Promise.all(
+                    generations.map(async (generation) => await fetchGeneration(generation.url))
+                );
+                setRegions(regions);
+
             } catch (error) {
                 console.log("Error fetching pokemon generations", error)
             }
         }
         loadGenerations();
-    }, [regions.length, setRegions])
+    }, [])
 
     return (
         <div className={"bg-amber-400 border-4 rounded-2xl m-[1vh] border-blue-800 h-[12vh] flex justify-evenly items-center"}>
