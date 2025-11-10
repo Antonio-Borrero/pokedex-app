@@ -1,5 +1,5 @@
 import {create} from 'zustand'
-import { persist } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware'
 import {PokemonPreview} from "@/types/pokemon";
 
 type PokemonStore = {
@@ -16,7 +16,7 @@ type PokemonStore = {
 }
 
 export const usePokemonStore = create<PokemonStore>()(
-    persist<PokemonStore>((set) => ({
+    persist((set) => ({
             pokemons: [],
             setPokemons: (pokemons: PokemonPreview[]) => set({pokemons}),
             visibleCount: 18,
@@ -30,6 +30,10 @@ export const usePokemonStore = create<PokemonStore>()(
         }),
         {
             name: "pokemon-storage",
+            storage: createJSONStorage(() => localStorage),
+            partialize: (state): Partial<PokemonStore> => ({
+                pokemons: state.pokemons,
+            })
         }
     )
 );
