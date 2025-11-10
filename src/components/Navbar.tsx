@@ -109,12 +109,17 @@ export default function Navbar() {
         loadGenerations();
     }, [])
 
+    const resetFilters = () => {
+        setSelectedType(null);
+        setSelectedGeneration(null);
+    }
+
     return (
         <div className={"bg-amber-400 border-4 rounded-2xl m-[1vh] border-blue-800 h-[12vh] flex justify-evenly items-center"}>
 
             {/* logo */}
 
-            <Link href={"/"} onClick={() => setSelectedType(null)}>
+            <Link href={"/"} onClick={resetFilters}>
                 <div className={"relative"}>
                     <Image
                         src="/logo.png"
