@@ -6,7 +6,8 @@ describe("Fetch Pokemon Species", () => {
             Promise.resolve({
                 json: () =>
                     Promise.resolve({
-                        evolution_chain: {url: "https://pokeapi.co/api/v2/evolution-chain/1/"}
+                        evolution_chain: {url: "https://pokeapi.co/api/v2/evolution-chain/1/"},
+                        generation: {name: "generation-i"},
                 })
             })
         )
@@ -16,6 +17,7 @@ describe("Fetch Pokemon Species", () => {
         const resp = await fetchPokemonSpecies("https://pokeapi.co/api/v2/pokemon_species/1/")
         expect(resp).toEqual({
             evolution_chain: "https://pokeapi.co/api/v2/evolution-chain/1/",
+            generation: "generation-i",
         });
         expect(fetch).toHaveBeenCalledTimes(1)
         expect(fetch).toHaveBeenCalledWith("https://pokeapi.co/api/v2/pokemon_species/1/")

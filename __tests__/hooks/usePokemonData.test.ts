@@ -19,6 +19,10 @@ jest.mock("@/api/fetchPokeAPI", () => {
             sprites: "sprites",
             types: [{ type: { name: "grass" } }, { type: { name: "poison" } }],
             generation: "generation-i"
+        })),
+        fetchPokemonSpecies: jest.fn().mockImplementation(async (url: string) => ({
+            evolution_chain: `${url.replace('pokemon_species','evolution-chain')}`,
+            generation: "generation-i"
         }))
     }
 })

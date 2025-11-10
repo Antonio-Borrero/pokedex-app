@@ -1,6 +1,9 @@
 import {getEvolutionChain} from "@/services/getEvolutionChain"
 
-const mockSpeciesResponse = {evolution_chain: {url: "https://pokeapi.co/api/v2/evolution-chain/1/"}};
+const mockSpeciesResponse = {
+    evolution_chain: {url: "https://pokeapi.co/api/v2/evolution-chain/1/"},
+    generation: "generation-i",
+};
 const mockEvolutionChainResponse = {
     chain: {
         species: {url: "https://pokeapi.co/api/v2/pokemon-species/1/"},
