@@ -17,7 +17,8 @@ jest.mock("@/api/fetchPokeAPI", () => {
             id,
             name: `pokemon-${id}`,
             sprites: "sprites",
-            types: [{ type: { name: "grass" } }, { type: { name: "poison" } }]
+            types: [{ type: { name: "grass" } }, { type: { name: "poison" } }],
+            generation: "generation-i"
         }))
     }
 })
@@ -52,7 +53,7 @@ describe("usePokemonData", () => {
 
     it("should skip fetch of a pokemon already in the store", async () => {
         usePokemonStore.setState({
-            pokemons: [{id: 1, name: "bulbasaur", sprites: "sprites", types: [{type: {name: "grass"}}, {type: {name: "poison"}}]}],
+            pokemons: [{id: 1, name: "bulbasaur", sprites: "sprites", types: [{type: {name: "grass"}}, {type: {name: "poison"}}], generation: "generation-i"}],
         })
 
         renderHook(() => usePokemonData())

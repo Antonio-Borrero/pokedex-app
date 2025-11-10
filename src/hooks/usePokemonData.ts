@@ -23,8 +23,11 @@ export const usePokemonData = () => {
                 const pokemonList: PokemonList[] = await fetchPokemonList(count);
 
                 const fullData = await Promise.all(
-                    pokemonList.map(async (p: PokemonList) => {
+                    pokemonList.map((p: PokemonList) => {
                         const id = getPokemonIdFromUrl(p.url);
+                        if (id === undefined) return null;
+                        return id
+                    }).filter((id): id is number => id !== null).map(async (id) => {
                         const data = await fetchPokemonByIdOrName(id);
                         const generation = await fetchPokemonSpecies(`https://pokeapi.co/api/v2/pokemon-species/${id}/`)
                         return {
@@ -35,10 +38,10 @@ export const usePokemonData = () => {
                             generation: generation.generation,
                         };
                     })
-                );
+        );
                 setPokemons(fullData);
             } catch (error) {
-                console.error("Error loading pokemons", error);
+                console.log("Error loading pokemons", error);
             }
         };
         fetchData();
