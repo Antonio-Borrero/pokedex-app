@@ -1,6 +1,42 @@
-# pokedex-app
-Pokédex web app built with Next.js, TypeScript and TailwindCSS using the PokeAPI.
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pokedex App
+
+Pokedex web app built with **Next.js**, **TypeScript**, **Zustand** and **TailwindCSS**.
+It allows users to explore Pokemon, view their types, generations and evolution chains using the official **PokéAPI**.
+
+## Features
+
+- Browse all Pokemon with detailed data.
+- View evolution chains and species info.
+- Filter pokemon by type or generation.
+- Optimized data fetching with custom React hooks.
+- Global state management using Zustand.
+- Infinite scroll: Pokemon are loaded progressively as user scroll.
+
+## Tech Stack
+
+- **Next.js 15**
+- **React 19**
+- **TailwindCSS 4**
+- **Zustand**
+- **TypeScript**
+- **Jest + Testing Library**
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Antonio-Borrero/pokedex-app.git
+cd pokedex-app
+
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
 
 ## Getting Started
 
@@ -16,23 +52,25 @@ pnpm dev
 bun dev
 ```
 
+## Running Tests
+
+Run the test suite with:
+
+```bash
+npm run test
+# or
+yarn test
+# or
+pnpm test
+# or
+bun test
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Browse the Pokemon list by scrolling down the page.
+- Click on a Pokemon to view detailed info, including types, initial stats, and evolution chain.
+- Use the filters in the navbar to select Pokemon by type or generation.
+- Use the search bar to quickly find a Pokemon by name.
