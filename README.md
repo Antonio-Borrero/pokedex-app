@@ -1,5 +1,11 @@
 # Pokedex App
 
+[![Next.js](https://img.shields.io/badge/Next.js-000000?logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Zustand](https://img.shields.io/badge/Zustand-00C7B7?logo=&logoColor=white)](https://github.com/pmndrs/zustand)
+
 Pokedex web app built with **Next.js**, **TypeScript**, **Zustand** and **TailwindCSS**.
 It allows users to explore Pokemon, view their types, generations and evolution chains using the official **PokéAPI**.
 
@@ -74,3 +80,15 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - Click on a Pokemon to view detailed info, including types, initial stats, and evolution chain.
 - Use the filters in the navbar to select Pokemon by type or generation.
 - Use the search bar to quickly find a Pokemon by name.
+
+## Screenshots
+
+![Pokemon List](screenshots/pokemon-list.png)
+![Pokemon details](screenshots/pokemon-details.png)
+![Search bar](screenshots/pokemon-search-bar.png)
+![Pokemon types filter](screenshots/pokemon-types.png)
+![pokemon generations filter](screenshots/pokemon-generations.png)
+
+## Data Source
+
+This app uses [PokéAPI](https://pokeapi.co/) to fetch Pokemon data including types, generations, evolution chains and sprites.
