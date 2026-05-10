@@ -3,13 +3,24 @@ English | [Español](README.es.md)
 # Pokedex App
 
 [![Next.js](https://img.shields.io/badge/Next.js-000000?logo=next.js&logoColor=white)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Zustand](https://img.shields.io/badge/Zustand-00C7B7?logo=&logoColor=white)](https://github.com/pmndrs/zustand)
 
-Pokedex web app built with **Next.js**, **TypeScript**, **Zustand** and **TailwindCSS**.
-It allows users to explore Pokemon, view their types, generations and evolution chains using the official **PokéAPI**.
+![Pokemon List](screenshots/pokemon-list.png)
+
+<br>
+
+This is my first independent personal project, developed outside of any bootcamp or formal course. My goal wasn't to build the "perfect app," but to experiment with new tools and understand their workflows.
+
+- **First steps with Next.js & Tailwind:** I used this project to jump into the Next.js ecosystem and Tailwind CSS. It was a "learning by doing" experience to understand file-based routing and utility-first styling.
+- **State Management (Zustand vs Redux):** I explored Zustand as a lightweight alternative to Redux. While I'm still evaluating performance differences, I found its developer experience much more intuitive for this scale of project.
+- **Performance Trade-offs:** To ensure a seamless global search, I chose to fetch the full Pokémon list on the initial load. To balance this, I implemented an Intersection Observer for the list rendering, ensuring images only load as they enter the viewport.
+- **Introduction to Testing:** This was my first contact with Jest. Although the testing suite is basic and I'm still mastering the "testing mindset," it laid the foundation for my future focus on code reliability.
+
+I am aware there is much room for improvement, and I plan to update this project as I continue to grow as a developer.
+
+<br>
 
 ## Features
 
@@ -20,76 +31,58 @@ It allows users to explore Pokemon, view their types, generations and evolution 
 - Global state management using Zustand.
 - Infinite scroll: Pokemon are loaded progressively as user scroll.
 
+<br>
+
 ## Tech Stack
 
 - **Next.js 15**
-- **React 19**
 - **TailwindCSS 4**
 - **Zustand**
 - **TypeScript**
 - **Jest + Testing Library**
 
+<br>
+
 ## Installation
 
-Clone the repository:
+1. Clone the repository:
+   
+   ```bash
+   git clone https://github.com/Antonio-Borrero/pokedex-app.git
+   ```
+2. run the development server:
+   ```bash
+   npm run dev
+   ```
+3. Run the test suite with:
+   ```bash
+   npm run test
+   ```
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-```bash
-git clone https://github.com/Antonio-Borrero/pokedex-app.git
-cd pokedex-app
+<br>
 
-npm install
-# or
-yarn install
-# or
-pnpm install
-# or
-bun install
-```
+## Development Challenge & Learning
 
-## Getting Started
+Since this was a self-directed project aimed at mastering modern web tools, I focused on several key architectural challenges:
 
-First, run the development server:
+- **Next.js:** Implemented the newest features of the ecosystem, including the App Router and enhanced hooks, ensuring the app is ready for the future of web dev.
+- **State Management with Zustand:** Moved away from complex Redux boilerplate to implement a lightweight, fast, and scalable global state for favorites and filters.
+- **Performance Optimization:** Integrated Infinite Scroll and optimized image loading to handle the large amount of data provided by the PokéAPI without compromising UX.
+- **Mastering Tailwind:** Experimented with the new engine of TailwindCSS to build a fully responsive and modern UI with less code.
+- **Testing Culture:** Prioritized reliability by implementing unit tests with Jest and Testing Library to ensure core functionalities work as expected.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-## Running Tests
-
-Run the test suite with:
-
-```bash
-npm run test
-# or
-yarn test
-# or
-pnpm test
-# or
-bun test
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Usage
-
-- Browse the Pokemon list by scrolling down the page.
-- Click on a Pokemon to view detailed info, including types, initial stats, and evolution chain.
-- Use the filters in the navbar to select Pokemon by type or generation.
-- Use the search bar to quickly find a Pokemon by name.
+<br>
 
 ## Screenshots
 
-![Pokemon List](screenshots/pokemon-list.png)
-![Pokemon details](screenshots/pokemon-details.png)
-![Search bar](screenshots/pokemon-search-bar.png)
-![Pokemon types filter](screenshots/pokemon-types.png)
-![pokemon generations filter](screenshots/pokemon-generations.png)
+| Main List | Detailed View | Search & Filters |
+|---|---|---|
+| ![Pokemon List](screenshots/pokemon-list.png) | ![Pokemon details](screenshots/pokemon-details.png) | ![Search bar](screenshots/pokemon-search-bar.png) |
+
+| Types Filter | Generations Filter |
+|---|---|
+| ![Pokemon types filter](screenshots/pokemon-types.png) | ![pokemon generations filter](screenshots/pokemon-generations.png) |
 
 ## Data Source
 
