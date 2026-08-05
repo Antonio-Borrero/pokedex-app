@@ -29,13 +29,15 @@ export const usePokemonData = () => {
                         return id
                     }).filter((id): id is number => id !== null).map(async (id) => {
                         const data = await fetchPokemonByIdOrName(id);
-                        const generation = await fetchPokemonSpecies(`https://pokeapi.co/api/v2/pokemon-species/${id}/`)
+                        const species = await fetchPokemonSpecies(`https://pokeapi.co/api/v2/pokemon-species/${id}/`)
                         return {
                             id: data.id,
                             name: data.name,
                             sprites: data.sprites,
                             types: data.types,
-                            generation: generation.generation,
+                            generation: species.generation,
+                            stats: data.stats,
+                            description: species.description,
                         };
                     })
         );

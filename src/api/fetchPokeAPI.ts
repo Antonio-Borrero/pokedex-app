@@ -37,9 +37,14 @@ export const fetchPokemonByIdOrName = async (idOrName: string | number): Promise
 export const fetchPokemonSpecies = async (url: string): Promise<PokemonSpecies> => {
     const resp = await fetch(url);
     const data = await resp.json();
+    const englishEntry = data.flavor_text_entries?.find(
+        (entry: { language: { name: string } }) => entry.language.name === "en"
+    );
+    const description = englishEntry?.flavor_text.replace(/[\n\f\r]/g, " ");
     return {
         evolution_chain: data.evolution_chain.url,
         generation: data.generation.name,
+        description,
     }
 }
 

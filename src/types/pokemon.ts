@@ -9,6 +9,8 @@ export type PokemonPreview = {
     sprites: string;
     types: {type: {name: string}}[];
     generation: string;
+    stats?: {base_stat: number, stat: {name: string}}[];
+    description?: string;
 };
 
 export type Pokemon = {
@@ -25,6 +27,7 @@ export type Pokemon = {
 export type PokemonSpecies = {
     evolution_chain: string,
     generation: string,
+    description?: string,
 }
 
 export type PokemonEvolutionChain = {
