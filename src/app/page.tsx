@@ -9,10 +9,12 @@ import { BrowseHeader, BrowseView } from "@/components/pokedex/BrowseHeader";
 import { PokemonGridCard } from "@/components/pokedex/PokemonGridCard";
 import { PokemonListRow } from "@/components/pokedex/PokemonListRow";
 import { QuickViewDrawer } from "@/components/pokedex/QuickViewDrawer";
+import { Loader } from "@/components/pokedex/Loader";
 
 export default function Home() {
 	const {
 		pokemons,
+		isLoading,
 		visibleCount,
 		setVisibleCount,
 		selectedType,
@@ -73,7 +75,9 @@ export default function Home() {
 			</div>
 
 			<div className="py-6 sm:py-8">
-				{view === "grid" ? (
+				{isLoading ? (
+					<Loader />
+				) : view === "grid" ? (
 					<div className="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-[18px]">
 						{filteredPokemons.slice(0, visibleCount).map((pokemon) => (
 							<PokemonGridCard

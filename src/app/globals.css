@@ -9,6 +9,7 @@
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
 	--font-sans: var(--font-manrope);
+	--animate-spin-slow: spin 1.4s linear infinite;
 }
 
 body {
