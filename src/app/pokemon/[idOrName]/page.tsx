@@ -54,119 +54,121 @@ export default async function SinglePokemon({ params }: Props) {
 				</div>
 
 				<div className="flex items-center gap-2 rounded-b-2xl bg-white px-3 py-8 sm:px-6 sm:py-10">
-				<Link
-					href={`/pokemon/${prevId}`}
-					className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-colors hover:bg-gray-200"
-					aria-label="Previous Pokémon"
-				>
-					<ChevronLeft size={20} />
-				</Link>
+					<Link
+						href={`/pokemon/${prevId}`}
+						className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-colors hover:bg-gray-200"
+						aria-label="Previous Pokémon"
+					>
+						<ChevronLeft size={20} />
+					</Link>
 
-				<div className="flex flex-1 flex-col gap-9 px-2 sm:flex-row sm:px-6">
-					{/* Left column */}
+					<div className="flex flex-1 flex-col gap-9 px-2 sm:flex-row sm:px-6">
+						{/* Left column */}
 
-					<div className="flex w-full flex-col gap-5 sm:w-[340px] sm:shrink-0">
-						<div
-							className={`relative aspect-square w-full overflow-hidden rounded-[20px] ${getTypeDetailTint(mainType)}`}
-						>
-							<Image
-								src={pokemon.sprites}
-								alt={pokemon.name}
-								fill
-								sizes="340px"
-								className="object-contain p-6"
-								priority
-							/>
-						</div>
-						{evolutions.length > 0 && (
-							<div>
-								<div className="mb-2.5 text-xs font-bold tracking-[0.04em] text-gray-500 uppercase">
-									Evolutions
+						<div className="flex w-full flex-col gap-5 sm:w-[340px] sm:shrink-0">
+							<div
+								className={`relative aspect-square w-full overflow-hidden rounded-[20px] ${getTypeDetailTint(mainType)}`}
+							>
+								<Image
+									src={pokemon.sprites}
+									alt={pokemon.name}
+									fill
+									sizes="340px"
+									className="object-contain p-6"
+									priority
+								/>
+							</div>
+							{evolutions.length > 0 && (
+								<div>
+									<div className="mb-2.5 text-xs font-bold tracking-[0.04em] text-gray-500 uppercase">
+										Evolutions
+									</div>
+									<div className="grid grid-cols-4 gap-2.5">
+										{evolutions.map((evolution) => (
+											<EvolutionThumbnail
+												key={evolution.id}
+												evolution={evolution}
+											/>
+										))}
+									</div>
 								</div>
-								<div className="flex gap-2.5">
-									{evolutions.map((evolution) => (
-										<EvolutionThumbnail
-											key={evolution.id}
-											evolution={evolution}
-										/>
+							)}
+						</div>
+
+						{/* Right column */}
+
+						<div className="flex flex-1 flex-col gap-6 pt-1">
+							<div>
+								<div className="text-[13px] font-bold text-gray-500">
+									#{String(pokemon.id).padStart(3, "0")}
+								</div>
+								<div className="text-[28px] font-extrabold tracking-tight text-gray-900 capitalize sm:text-[34px]">
+									{pokemon.name}
+								</div>
+								<div className="mt-2.5 flex gap-1.5">
+									{pokemon.types.map((t) => (
+										<TypeChip key={t.type.name} type={t.type.name} />
 									))}
 								</div>
 							</div>
-						)}
-					</div>
 
-					{/* Right column */}
+							{species.description && (
+								<p className="text-[15px] leading-[1.7] text-gray-600">
+									{species.description}
+								</p>
+							)}
 
-					<div className="flex flex-1 flex-col gap-6 pt-1">
-						<div>
-							<div className="text-[13px] font-bold text-gray-500">
-								#{String(pokemon.id).padStart(3, "0")}
+							<div className="flex gap-8">
+								<div>
+									<div className="text-xs font-bold tracking-[0.04em] text-gray-500 uppercase">
+										Height
+									</div>
+									<div className="mt-1 text-xl font-extrabold text-gray-800">
+										{(pokemon.height / 10).toFixed(1)} m
+									</div>
+								</div>
+								<div>
+									<div className="text-xs font-bold tracking-[0.04em] text-gray-500 uppercase">
+										Weight
+									</div>
+									<div className="mt-1 text-xl font-extrabold text-gray-800">
+										{(pokemon.weight / 10).toFixed(1)} kg
+									</div>
+								</div>
 							</div>
-							<div className="text-[28px] font-extrabold tracking-tight text-gray-900 capitalize sm:text-[34px]">
-								{pokemon.name}
-							</div>
-							<div className="mt-2.5 flex gap-1.5">
-								{pokemon.types.map((t) => (
-									<TypeChip key={t.type.name} type={t.type.name} />
-								))}
-							</div>
-						</div>
 
-						{species.description && (
-							<p className="text-[15px] leading-[1.7] text-gray-600">
-								{species.description}
-							</p>
-						)}
-
-						<div className="flex gap-8">
 							<div>
-								<div className="text-xs font-bold tracking-[0.04em] text-gray-500 uppercase">
-									Height
+								<div className="mb-3 text-[13px] font-bold tracking-[0.04em] text-gray-500 uppercase">
+									Base stats
 								</div>
-								<div className="mt-1 text-xl font-extrabold text-gray-800">
-									{(pokemon.height / 10).toFixed(1)} m
+								<div className="flex flex-col gap-3">
+									{STAT_ORDER.map(({ name, label }) => {
+										const stat = pokemon.stats.find(
+											(s) => s.stat.name === name,
+										);
+										if (!stat) return null;
+										return (
+											<StatBar
+												key={name}
+												label={label}
+												value={stat.base_stat}
+												type={mainType}
+											/>
+										);
+									})}
 								</div>
-							</div>
-							<div>
-								<div className="text-xs font-bold tracking-[0.04em] text-gray-500 uppercase">
-									Weight
-								</div>
-								<div className="mt-1 text-xl font-extrabold text-gray-800">
-									{(pokemon.weight / 10).toFixed(1)} kg
-								</div>
-							</div>
-						</div>
-
-						<div>
-							<div className="mb-3 text-[13px] font-bold tracking-[0.04em] text-gray-500 uppercase">
-								Base stats
-							</div>
-							<div className="flex flex-col gap-3">
-								{STAT_ORDER.map(({ name, label }) => {
-									const stat = pokemon.stats.find((s) => s.stat.name === name);
-									if (!stat) return null;
-									return (
-										<StatBar
-											key={name}
-											label={label}
-											value={stat.base_stat}
-											type={mainType}
-										/>
-									);
-								})}
 							</div>
 						</div>
 					</div>
+
+					<Link
+						href={`/pokemon/${nextId}`}
+						className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-colors hover:bg-gray-200"
+						aria-label="Next Pokémon"
+					>
+						<ChevronRight size={20} />
+					</Link>
 				</div>
-
-				<Link
-					href={`/pokemon/${nextId}`}
-					className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-colors hover:bg-gray-200"
-					aria-label="Next Pokémon"
-				>
-					<ChevronRight size={20} />
-				</Link>
-			</div>
 			</div>
 		</div>
 	);
