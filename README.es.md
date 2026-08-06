@@ -1,6 +1,7 @@
 Español | [English](README.md)
 
 # Pokedex App
+
 [![Next.js](https://img.shields.io/badge/Next.js-000000?logo=next.js&logoColor=white)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
@@ -74,13 +75,17 @@ Al ser un proyecto autodidacta centrado en dominar herramientas modernas, me enf
 
 ## Capturas de Pantalla
 
-| Main List | Detailed View | Search & Filters |
-|---|---|---|
-| ![Pokemon List](screenshots/pokemon-list.png) | ![Pokemon details](screenshots/pokemon-details.png) | ![Search bar](screenshots/pokemon-search-bar.png) |
+| Main Grid                                      | Main List                                      | Preview                                      |
+| ---------------------------------------------- | ---------------------------------------------- | -------------------------------------------- |
+| ![Pokemon Grid](screenshots/pokemon-grid.webp) | ![Pokemon List](screenshots/pokemon-list.webp) | ![Preview](screenshots/pokemon-preview.webp) |
 
-| Types Filter | Generations Filter |
-|---|---|
-| ![Pokemon types filter](screenshots/pokemon-types.png) | ![pokemon generations filter](screenshots/pokemon-generations.png) |
+| Types Filter                                            | Generations Filter                                                  | Details                                              |
+| ------------------------------------------------------- | ------------------------------------------------------------------- | ---------------------------------------------------- |
+| ![Pokemon types filter](screenshots/pokemon-types.webp) | ![pokemon generations filter](screenshots/pokemon-generations.webp) | ![Pokemon Details](screenshots/pokemon-details.webp) |
+
+| Mobile view                                                  |
+| ------------------------------------------------------------ |
+| ![pokemon Mobile view](screenshots/pokemon-mobile-view.webp) |
 
 <br>
 

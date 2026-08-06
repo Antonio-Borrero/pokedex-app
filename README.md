@@ -7,7 +7,7 @@ English | [Español](README.es.md)
 [![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Zustand](https://img.shields.io/badge/Zustand-00C7B7?logo=&logoColor=white)](https://github.com/pmndrs/zustand)
 
-![Pokemon List](screenshots/pokemon-list.png)
+![Pokemon List](screenshots/pokemon-list.webp)
 
 <br>
 
@@ -46,10 +46,11 @@ I am aware there is much room for improvement, and I plan to update this project
 ## Installation
 
 1. Clone the repository:
-   
+
    ```bash
    git clone https://github.com/Antonio-Borrero/pokedex-app.git
    ```
+
 2. run the development server:
    ```bash
    npm run dev
@@ -76,13 +77,17 @@ Since this was a self-directed project aimed at mastering modern web tools, I fo
 
 ## Screenshots
 
-| Main List | Detailed View | Search & Filters |
-|---|---|---|
-| ![Pokemon List](screenshots/pokemon-list.png) | ![Pokemon details](screenshots/pokemon-details.png) | ![Search bar](screenshots/pokemon-search-bar.png) |
+| Main Grid                                      | Main List                                      | Preview                                      |
+| ---------------------------------------------- | ---------------------------------------------- | -------------------------------------------- |
+| ![Pokemon Grid](screenshots/pokemon-grid.webp) | ![Pokemon List](screenshots/pokemon-list.webp) | ![Preview](screenshots/pokemon-preview.webp) |
 
-| Types Filter | Generations Filter |
-|---|---|
-| ![Pokemon types filter](screenshots/pokemon-types.png) | ![pokemon generations filter](screenshots/pokemon-generations.png) |
+| Types Filter                                            | Generations Filter                                                  | Details                                              |
+| ------------------------------------------------------- | ------------------------------------------------------------------- | ---------------------------------------------------- |
+| ![Pokemon types filter](screenshots/pokemon-types.webp) | ![pokemon generations filter](screenshots/pokemon-generations.webp) | ![Pokemon Details](screenshots/pokemon-details.webp) |
+
+| Mobile view                                                  |
+| ------------------------------------------------------------ |
+| ![pokemon Mobile view](screenshots/pokemon-mobile-view.webp) |
 
 ## Data Source
 
