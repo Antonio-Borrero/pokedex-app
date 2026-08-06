@@ -110,15 +110,23 @@ export const BrowseHeader = ({
 				activeId={selectedType ?? ""}
 				onSelect={(id) => setSelectedType(id || null)}
 			/>
+			<button
+				type="button"
+				onClick={() => {
+					setSelectedGeneration(null);
+					setSelectedType(null);
+				}}
+				className={`rounded-lg bg-gray-200 px-3 py-2 text-sm text-gray-700 hover:bg-gray-300 ${selectedGeneration || selectedType ? "pointer-events-auto" : "pointer-events-none opacity-50"}`}
+			>
+				Clear filters
+			</button>
 			<div className="ml-auto flex gap-0.5 rounded-[10px] bg-gray-100 p-[3px]">
 				<button
 					type="button"
 					title="Grid view"
 					onClick={() => onViewChange("grid")}
 					className={`flex h-[30px] w-[34px] cursor-pointer items-center justify-center rounded-lg transition-colors ${
-						view === "grid"
-							? "bg-blue-600 text-white"
-							: "text-gray-500"
+						view === "grid" ? "bg-blue-600 text-white" : "text-gray-500"
 					}`}
 				>
 					<LayoutGrid size={16} />
@@ -128,9 +136,7 @@ export const BrowseHeader = ({
 					title="List view"
 					onClick={() => onViewChange("list")}
 					className={`flex h-[30px] w-[34px] cursor-pointer items-center justify-center rounded-lg transition-colors ${
-						view === "list"
-							? "bg-blue-600 text-white"
-							: "text-gray-500"
+						view === "list" ? "bg-blue-600 text-white" : "text-gray-500"
 					}`}
 				>
 					<ListIcon size={16} />
