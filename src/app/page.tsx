@@ -63,7 +63,7 @@ export default function Home() {
 
 	return (
 		<div className="mx-auto flex w-full max-w-[1180px] flex-col px-[4vw] sm:px-[5vw]">
-			<div className="sticky top-0 z-20">
+			<div className="sticky top-0 z-20 bg-white">
 				<BrowseHeader
 					query={query}
 					onQueryChange={setQuery}

@@ -89,7 +89,7 @@ export const BrowseHeader = ({
 	const typeLabel = selectedType ? formatTypeName(selectedType) : "All";
 
 	return (
-		<div className="mt-5 flex flex-wrap items-center gap-3 rounded-2xl border-b border-slate-200 bg-gradient-to-b from-slate-50 to-slate-100 px-5 py-5 sm:flex-nowrap sm:gap-3.5 sm:px-8">
+		<div className="mt-5 flex flex-wrap items-center gap-3 rounded-2xl border-b border-slate-200 bg-gradient-to-b from-slate-50 to-slate-100 px-5 py-5 sm:flex-nowrap sm:gap-3.5 sm:px-8 mb-2">
 			<PokeballLogo />
 			<input
 				value={query}
