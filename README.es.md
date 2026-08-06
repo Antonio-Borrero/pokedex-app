@@ -7,7 +7,7 @@ Español | [English](README.md)
 [![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Zustand](https://img.shields.io/badge/Zustand-443E38?logo=react&logoColor=white)](https://github.com/pmndrs/zustand)
 
-![Lista Pokemon](screenshots/pokemon-list.png)
+![Lista Pokemon](screenshots/pokemon-grid.webp)
 
 <br>
 
